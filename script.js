@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('nav-menu');
   const navToggle = document.getElementById('nav-toggle');
   const navClose = document.getElementById('nav-close');
-  const navLinks = document.querySelectorAll('.nav__link');
+  const navLinks = document.querySelectorAll('.nav__link, .nav__resume-mobile-btn');
 
   // Open menu
   if (navToggle) {
@@ -434,9 +434,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------------------------------
      12. RESUME DOWNLOAD HANDLER
      -------------------------------------------------------------------------- */
-  const resumeBtn = document.getElementById('resume-download-btn');
-  if (resumeBtn) {
-    resumeBtn.addEventListener('click', (e) => {
+  const resumeButtons = document.querySelectorAll('#resume-download-btn, #resume-download-btn-mobile, .resume-download-btn');
+  resumeButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
       showToast('Generating Kavan Patel Resume PDF...', 'info');
 
@@ -447,23 +447,23 @@ KAVAN PATEL - FULL STACK DEVELOPER
 ================================================
 Email: kavanpatel.dev@gmail.com
 Role: Full Stack Web Developer
-Stack: HTML5, CSS3, JavaScript, React.js, Node.js, Express.js, MongoDB, Git, REST APIs
+Stack: HTML5, CSS3, JavaScript, React.js, Git, GitHub
 Location: Gujarat, India (Open to Remote Worldwide)
 
 Summary:
-Passionate Full Stack Developer with experience in building modern, responsive, high-performance web applications.
+Passionate Fresher Full Stack Developer with experience in building modern, responsive, high-performance web applications using HTML, CSS, JavaScript, and React.js.
 
 Skills:
-- Frontend: HTML5, CSS3, JavaScript (ES6+), React.js, Responsive UI
-- Backend: Node.js, Express.js, RESTful APIs, JWT Auth
-- Database & Tools: MongoDB, Mongoose, Git, GitHub, Postman
+- Frontend: HTML5, CSS3, JavaScript (ES6+), React.js, Responsive Design & UI
+- Tools & AI: Git, GitHub, LocalStorage, Vercel AI, Antigravity AI, Lovable AI
+- Education: Bachelor of Computer Applications (BCA) - Kaushalya The Skill University
 ================================================`;
 
         const blob = new Blob([resumeText], { type: 'text/plain;charset=utf-8' });
         const downloadUrl = URL.createObjectURL(blob);
         const tempLink = document.createElement('a');
         tempLink.href = downloadUrl;
-        tempLink.download = 'Kavan_Patel_FullStack_Resume.txt';
+        tempLink.download = 'Kavan_Patel_Resume.txt';
         document.body.appendChild(tempLink);
         tempLink.click();
         document.body.removeChild(tempLink);
@@ -472,7 +472,7 @@ Skills:
         showToast('Resume downloaded successfully!', 'success');
       }, 700);
     });
-  }
+  });
 
 
   /* --------------------------------------------------------------------------
